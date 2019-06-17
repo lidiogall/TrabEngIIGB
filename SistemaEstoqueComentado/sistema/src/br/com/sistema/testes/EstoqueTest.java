@@ -11,7 +11,8 @@ import br.com.sistema.negocio.Produto;
 
 public class EstoqueTest extends Estoque {
 
-    private Estoque estoque = new Estoque();
+    
+	private Estoque estoque = new Estoque();
     private Produto p1 = new Produto(1, "Katana", 3, 0, 170.0);
     private Produto p2 = new Produto(1, "Livro Harry Potter", 6, 0, 50.0);
 
