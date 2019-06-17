@@ -41,21 +41,30 @@ public class RelatoriosUI {
                     this.listarProdutosComQuantidadeBaixa();
                     break;
                 case 6:
+                    this.efetuarVenda();
+                    break;
+                case 7:
+                    this.listarProdutos();
+                    break;
+                case 8:
                     System.out.println("AtÈ logo!");
                     break;
             }
-        } while (this.acao != 6);
+        } while (this.acao != 8);
     }
 
     //A a√ß√£o poderia ser s√≥ uma variavel temporaria e dai esse m√©todo retornaria ela
     private void definirAcao() {
+    	System.out.println(" ");
         System.out.println("Escolha uma opÁ„o: ");
         System.out.println("1 - Inserir produto no estoque ");
         System.out.println("2 - Adicionar quantidade de um produto ");
         System.out.println("3 - Retirar quantidade de produto");
         System.out.println("4 - Listar produtos");
         System.out.println("5 - Listar produtos com quantidade baixa");
-        System.out.println("6 - Sair");
+        System.out.println("6 - Efetuar venda");
+        System.out.println("7 - Efetuar consulta de preÁo");
+        System.out.println("8 - Sair");
         System.out.print("OpÁ„o - ");
         this.acao = this.teclado.nextInt();
     }
@@ -121,6 +130,22 @@ public class RelatoriosUI {
 
     }
 
+  //Tanto nessa quanto na fun√ß√£o anterior se lista os produtos para mostrar as altera√ß√µes que foram ou n√£o feitas
+    private void efetuarVenda() {
+        boolean temProduto = this.listarProdutos();
+        if (temProduto) {
+            Produto paraDiminuirQuantidade = this.selecionaProduto();
+            System.out.print("Informe quantos itens deseja vender: ");
+            int quantidadeRetirar = teclado.nextInt();
+            boolean retirou = paraDiminuirQuantidade.remove(quantidadeRetirar);
+            if (!retirou) {
+                System.out.println("Quantidade m·xima excedida!");
+            }
+            
+        }
+
+    }
+    
     //O tratamento da exce√ß√£o lan√ßada na busca de produto por id √© tratada aqui
     private Produto selecionaProduto() {
         System.out.print("Digite o id do produto desejado: ");
